@@ -20,7 +20,7 @@
           <input v-model="todoModel.due_date" placeholder="saf" class="form-item" type="date"/>
         </div>
       </div>
-      <button class="button text-sm" type="submit">Add</button>
+      <Button  type="submit">Add</Button>
     </form>
   </div>
 </template>
@@ -79,9 +79,7 @@ export default {
     }
     .textarea{
     }
-    .button{
-      @apply py-1 px-2 text-gray-300 float-right bg-purple-600 mt-2 border border-purple-700 rounded-lg;
-    }
+
   }
 }
 </style>

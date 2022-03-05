@@ -16,24 +16,27 @@
         <p
           class="status-item"
           @click="filteredList('all')"
+          :class="{active:filterType === 'all'}"
         >
           All
         </p>
         <p
           class="status-item"
           @click="filteredList('pending')"
+          :class="{active:filterType === 'pending'}"
         >
           Active
         </p>
         <p
           class="status-item"
           @click="filteredList('completed')"
+          :class="{active:filterType === 'completed'}"
         >
           Completed
         </p>
       </div>
       <div
-        class="text-xs cursor-pointer dark:hover:text-[#d2d3db] hover:text-[#484b6a] transition-colors"
+        class="text-xs cursor-pointer hover:text-gray-200 transition-colors"
         @click="handleClearCompletedTodos"
       >
         Clear Completed
@@ -50,7 +53,7 @@ export default {
   name: "TodoList",
   data(){
     return{
-      filterType:null
+      filterType:'all'
     }
   },
   computed:{
@@ -85,6 +88,9 @@ export default {
         @apply flex justify-center p-4 bg-white  bg-gray-800 shadow-lg  absolute -bottom-20 right-0 w-full space-x-3.5 text-sm font-bold rounded-lg md:bg-transparent md:p-0 md:shadow-none md:static md:rounded-none md:w-auto md:justify-start;
         .status-item {
           @apply cursor-pointer hover:text-gray-500 dark:hover:text-gray-200 transition-colors;
+        }
+        .status-item.active{
+          @apply text-gray-200;
         }
       }
     }

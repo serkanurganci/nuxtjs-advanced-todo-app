@@ -11,18 +11,18 @@
           >
             TODO
           </h1>
+          <nav class="w-full">
+            <Button @click.native="activeTab='Statistics'" :active="activeTab ==='Statistics'">Statistics</Button>
+            <Button @click.native="activeTab = 'TodoList'" class="mr-2" :active="activeTab ==='TodoList'">Todo List</Button>
+          </nav>
         </header>
-        <main>
+        <div>
           <AddTodo/>
-          <TodoList/>
-        </main>
+<!--          <TodoList/>-->
+          <component :is="activeTab"></component>
+        </div>
       </div>
-      <div class="w-40">
-        <BarChart :data="barChartData" :options="barChartOptions" />
-      </div>
-      <div class="w-40">
-        <PieChart :data="pieData" :options="pieOptions"/>
-      </div>
+
     </div>
 
 </template>
@@ -30,91 +30,17 @@
 <script>
 import backgroundImg from '/assets/images/background.jpeg'
 import PieChart from "../components/PieChart";
+import Button from "../components/Button";
 
 export default {
   name: 'IndexPage',
-  components: {PieChart},
+  components: {Button, PieChart},
   data(){
     return{
       img:backgroundImg,
-      barChartData: {
-        labels: [
-          "2019-06",
-          "2019-07",
-          "2019-08",
-          "2019-09",
-          "2019-10",
-          "2019-11",
-          "2019-12",
-          "2020-01",
-          "2020-02",
-          "2020-03",
-        ],
-        datasets: [
-          {
-            label: "Visualizaciones",
-            data: [2, 1, 16, 3, 4, 5, 0, 0, 4, 12, 2],
-            backgroundColor: "rgba(20, 255, 0, 0.3)",
-            borderColor: "rgba(100, 255, 0, 1)",
-            borderWidth: 2,
-          },
-        ],
-      },
-      barChartOptions: {
-        responsive: true,
-        legend: {
-          display: false,
-        },
-        title: {
-          display: true,
-          text: "Google analytics data",
-          fontSize: 24,
-          fontColor: "#6b7280",
-        },
-        tooltips: {
-          backgroundColor: "#17BF62",
-        },
-        scales: {
-          xAxes: [
-            {
-              gridLines: {
-                display: true,
-              },
-            },
-          ],
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-                max: 7,
-                min: 0,
-                stepSize: 1,
-              },
-              gridLines: {
-                display: true,
-              },
-            },
-          ],
-        },
-      },
-      pieOptions: {
-        hoverBorderWidth: 20
-      },
-      pieData: {
-        hoverBackgroundColor: "red",
-        hoverBorderWidth: 10,
-        labels: ["Green", "Red", "Blue"],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: ["#41B883", "#E46651", "#00D8FF"],
-            data: [1, 10, 5]
-          }
-        ]
-      }
+      activeTab:'Statistics'
     }
   },
-
 }
 </script>
 
@@ -125,11 +51,11 @@ export default {
      @apply absolute z-0 h-80 w-full bg-cover bg-no-repeat inset-0 ;
     }
     &__container{
-      @apply z-10 space-y-12 w-11/12 md:w-3/5 lg:w-2/5 mx-auto my-0 mt-14 md:mt-7 relative  ;
+      @apply z-10 space-y-4 w-11/12 md:w-3/5 lg:w-2/5 mx-auto my-0 mt-7 md:mt-7 relative  ;
     }
     .container{
       &__header{
-        @apply flex items-center justify-between;
+        @apply flex flex-col items-start justify-between bg-[rgba(0,0,0,0.4)] p-2 rounded-md;
         .heading{
           @apply text-white font-bold tracking-widest text-4xl md:text-5xl ;
         }
