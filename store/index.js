@@ -2,16 +2,16 @@ export const state = () => ({
   todoList: [
     {
       name:'Todo List Item',
-      completion_date:Date.now(),
+      completion_date:null,
       description:'description',
-      due_date:new Date(2022,3,5),
+      due_date:null,
       status:'pending'
     },
     {
       name:'Todo List Item 2',
-      completion_date:Date.now(),
+      completion_date:null,
       description:'description 2',
-      due_date:new Date(2022,3,5),
+      due_date:null,
       status:'pending'
     }
   ],
@@ -33,10 +33,15 @@ export const mutations = {
   },
   deleteTodo(state, payload) {
     state.todoList = state.todoList.filter((todo,index) => index !== payload)
+    state.filteredTodoList = state.filteredTodoList.filter((todo,index) => index !== payload)
   },
   completedTodo(state, payload){
+    const newDate = new Date
+    const zero = (item) =>{return item < 10 ? '0' + item : item}
+    const nowDate = zero(newDate.getDate())  + '.' + (zero(newDate.getMonth() + 1)) + '.' + newDate.getFullYear() + '  ' + zero(newDate.getHours()) + ':' + zero(newDate.getMinutes())
     const findTodo = state.todoList.find((todo, index) => index === payload)
     findTodo.status = findTodo.status === 'completed' ? 'pending' : 'completed'
+    findTodo.completion_date = nowDate
   },
   clearCompletedTodos(state){
     state.todoList = state.todoList.filter(todo => todo.status !== 'completed')

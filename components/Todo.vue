@@ -5,7 +5,12 @@
       :id="todo.status === 'completed' ? 'checked': ''"
       @click="completeTodo"
     >{{ todo.status === 'completed' ? '&#10004;' : '' }}</span>
-     <p class="transition-all">{{ todo.name }}{{isTodoCompleted}}</p>
+     <div class="todo__content">
+       <p class="transition-all">{{ todo.name }}</p>
+       <p class="todo__completion-date" v-if="todo.status ==='completed'">Completion Date: {{todo.completion_date}}</p>
+       <p class="todo__due-date" v-if="todo.status ==='pending'">Due Date: {{todo.due_date ? todo.due_date : 'Not Entered'}}</p>
+     </div>
+
    <div
      class="todo__delete-icon"
      @click="deleteTodo"
@@ -30,13 +35,13 @@ export default {
   },
   data(){
     return{
-      isTodoCompleted: this.todo.status === 'completed' ? "checked" : "",
     }
   },
   methods:{
     ...mapMutations({deleteTodoMutation:'deleteTodo',completeTodoMutation:'completedTodo'}),
     deleteTodo(){
       this.deleteTodoMutation(this.todoId)
+
     },
     completeTodo(){
       this.completeTodoMutation(this.todoId)
@@ -50,14 +55,24 @@ export default {
     @apply relative flex items-center w-full  p-3 gap-x-4 h-14 border-b border-gray-300 border-gray-700 text-gray-300 select-text ;
     &:hover{
       .todo__delete-icon{
-        @apply inline-block;
+        @apply visible;
       }
     }
     &__check-icon{
       @apply w-5 h-5 text-sm relative bg-transparent inline-block transition-all cursor-pointer border border-gray-600 rounded-full ;
     }
     &__delete-icon{
-      @apply text-lg hidden inline-block absolute top-1/2 transform -translate-y-1/2 right-4 cursor-pointer;
+      @apply text-lg invisible cursor-pointer;
+    }
+    &__content{
+      @apply flex-1 flex items-center justify-between;
+    }
+    &__completion-date{
+      @apply text-[7px] sm:text-xs;
+    }
+    &__due-date{
+      @apply text-[7px] sm:text-xs;
+
     }
   }
   #checked {
