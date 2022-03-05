@@ -2,14 +2,14 @@ export const state = () => ({
   todoList: [
     {
       name:'Todo List Item',
-      completion_date:null,
+      completion_date:'Incomplete',
       description:null,
       due_date:null,
       status:'pending'
     },
     {
       name:'Todo List Item 2',
-      completion_date:null,
+      completion_date:'Incomplete',
       description:null,
       due_date:null,
       status:'pending'

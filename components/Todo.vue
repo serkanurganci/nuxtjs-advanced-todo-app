@@ -6,7 +6,7 @@
       @click="completeTodo"
     >{{ todo.status === 'completed' ? '&#10004;' : '' }}</span>
      <div class="todo__content">
-       <p class="transition-all">{{ todo.name }}</p>
+       <p class="transition-all todo-name" :class="todo.status === 'completed' ? 'checked-name': ''">{{ todo.name }}</p>
        <p class="todo__completion-date" v-if="todo.status ==='completed'">Completion Date: {{todo.completion_date}}</p>
        <p class="todo__due-date" v-if="todo.status ==='pending'">Due Date: {{todo.due_date ? todo.due_date : 'Not Entered'}}</p>
      </div>
@@ -78,7 +78,7 @@ export default {
   #checked {
     @apply bg-origin-border bg-gradient-to-tl from-purple-500 to-blue-500 border-transparent;
   }
-  #checked + p {
+  .checked-name {
     @apply text-[#9394a5] line-through decoration-[#484b6a];
   }
 </style>

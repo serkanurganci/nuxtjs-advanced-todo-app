@@ -33,7 +33,7 @@ export default {
     return{
       todoModel: {
         name:'',
-        completion_date:Date.now(),
+        completion_date:'Incomplete',
         description:'',
         due_date:null,
         status:'pending'
