@@ -1,8 +1,8 @@
 <template>
   <div class="todo-list">
-    <div>
+    <div v-for="todo in todoList">
       <Todo
-        :todo="{title:'Todo 1'}"
+        :todo="todo"
       ></Todo>
     </div>
     <div
@@ -40,8 +40,16 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
-  name: "TodoList"
+  name: "TodoList",
+  computed:{
+    ...mapState({todoList:'todoList'})
+  },
+  mounted() {
+    console.log(this.todoList)
+  }
 }
 </script>
 

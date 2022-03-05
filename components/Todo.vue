@@ -3,7 +3,7 @@
     <span
       class="todo__check-icon"
     ></span>
-     <p class="transition-all">{{ todo.title }}</p>
+     <p class="transition-all">{{ todo.name }}</p>
  </div>
 </template>
 

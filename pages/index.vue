@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import backgroundImg from '/assets/image/background.jpeg'
+import backgroundImg from '/assets/images/background.jpeg'
 
 export default {
   name: 'IndexPage',
