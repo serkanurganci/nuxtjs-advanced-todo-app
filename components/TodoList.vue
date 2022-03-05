@@ -1,6 +1,6 @@
 <template>
   <div class="todo-list">
-    <div v-for="(todo,index) in filteredTodoListGetter">
+    <div v-for="(todo,index) in filteredTodoList">
       <Todo
         :todo="todo"
         :todoId="index"
@@ -9,7 +9,7 @@
     <div
       class="todo-list__status status"
     >
-      <div class="text-xs">{{todoLeftGetter}} items left</div>
+      <div class="text-xs">{{todoPendingGetter.length}} items left</div>
       <div
         class="status__status-items"
       >
@@ -58,20 +58,24 @@ export default {
   },
   computed:{
     ...mapState({todoList:'todoList'}),
-    ...mapGetters({filteredTodoListGetter:'filteredTodoListGetter',todoLeftGetter:'todoLeftGetter'})
-  },
-  mounted() {
-    this.filteredStatusTodoList('all')
+    ...mapGetters({todoPendingGetter:'todoPendingGetter',todoCompletedGetter:'todoCompletedGetter'}),
+    filteredTodoList(){
+      if(this.filterType === 'all'){
+        return this.todoList
+      }else if(this.filterType ==='pending'){
+        return this.todoPendingGetter
+      }else{
+        return this.todoCompletedGetter
+      }
+    }
   },
   methods:{
-    ...mapMutations({filteredStatusTodoList:'filteredStatusTodoList',clearCompletedTodos:'clearCompletedTodos'}),
+    ...mapMutations({clearCompletedTodos:'clearCompletedTodos'}),
     filteredList(filterType){
       this.filterType = filterType
-      this.filteredStatusTodoList(this.filterType)
     },
     handleClearCompletedTodos() {
       this.clearCompletedTodos()
-      this.filteredStatusTodoList(this.filterType)
     }
   }
 }

@@ -20,13 +20,13 @@
           <input v-model="todoModel.due_date" placeholder="saf" class="form-item" type="date"/>
         </div>
       </div>
-      <Button  type="submit">Add</Button>
+      <Button @click.native="addTodo">Add</Button>
     </form>
   </div>
 </template>
 
 <script>
-import {mapMutations, mapState} from 'vuex'
+import {mapMutations} from 'vuex'
 export default {
   name: "AddTodo",
   data(){

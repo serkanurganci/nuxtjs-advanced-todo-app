@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapGetters, mapState} from "vuex";
 
 export default {
   name: "Statistics",
@@ -84,7 +84,8 @@ export default {
     }
   },
   computed:{
-    ...mapState({filteredTodoList:'filteredTodoList'}),
+    ...mapState({todoList:'todoList'}),
+    ...mapGetters({todoPendingGetter:'todoPendingGetter',todoCompletedGetter:'todoCompletedGetter'}),
     pieData() {
       return{
         hoverBackgroundColor: "red",
@@ -94,7 +95,7 @@ export default {
           {
             label: "Data One",
             backgroundColor: ["#7e22ce", "#eab308"],
-            data: [this.filteredTodoList.filter(todo => todo.status === 'completed').length, this.filteredTodoList.filter(todo => todo.status === 'pending').length]
+            data: [this.todoCompletedGetter.length, this.todoPendingGetter.length]
           }
         ]
       }
