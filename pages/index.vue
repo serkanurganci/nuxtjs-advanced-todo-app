@@ -41,6 +41,9 @@ export default {
       activeTab:'TodoList'
     }
   },
+  mounted() {
+    this.$store.commit('getLocalStorage')
+  }
 }
 </script>
 
