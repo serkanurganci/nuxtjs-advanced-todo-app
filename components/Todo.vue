@@ -2,8 +2,10 @@
  <div class="todo">
     <span
       class="todo__check-icon"
-    ></span>
-     <p class="transition-all">{{ todo.name }}</p>
+      :id="todo.status === 'completed' ? 'checked': ''"
+      @click="completeTodo"
+    >{{ todo.status === 'completed' ? '&#10004;' : '' }}</span>
+     <p class="transition-all">{{ todo.name }}{{isTodoCompleted}}</p>
    <div
      class="todo__delete-icon"
      @click="deleteTodo"
@@ -26,10 +28,18 @@ export default {
       default:null
     }
   },
+  data(){
+    return{
+      isTodoCompleted: this.todo.status === 'completed' ? "checked" : "",
+    }
+  },
   methods:{
-    ...mapMutations({deleteTodoMutation:'deleteTodo'}),
+    ...mapMutations({deleteTodoMutation:'deleteTodo',completeTodoMutation:'completedTodo'}),
     deleteTodo(){
       this.deleteTodoMutation(this.todoId)
+    },
+    completeTodo(){
+      this.completeTodoMutation(this.todoId)
     }
   }
 }
@@ -44,10 +54,16 @@ export default {
       }
     }
     &__check-icon{
-      @apply w-5 h-5 relative bg-transparent inline-block transition-all cursor-pointer border border-gray-600 rounded-full ;
+      @apply w-5 h-5 text-sm relative bg-transparent inline-block transition-all cursor-pointer border border-gray-600 rounded-full ;
     }
     &__delete-icon{
       @apply text-lg hidden inline-block absolute top-1/2 transform -translate-y-1/2 right-4 cursor-pointer;
     }
+  }
+  #checked {
+    @apply bg-origin-border bg-gradient-to-tl from-purple-500 to-blue-500 border-transparent;
+  }
+  #checked + p {
+    @apply text-[#9394a5] line-through decoration-[#484b6a];
   }
 </style>

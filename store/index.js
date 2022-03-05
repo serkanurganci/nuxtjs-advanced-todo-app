@@ -1,11 +1,5 @@
 export const state = () => ({
-  todoModel: {
-    name:'',
-    completion_date:Date.now(),
-    description:'description',
-    due_date:new Date(2022,3,5),
-    status:'pending'
-  },
+
   todoList: [
     {
       name:'Todo List Item',
@@ -25,18 +19,14 @@ export const state = () => ({
 })
 
 export const mutations = {
-  addTodo(state) {
-    const todoModelStringify = JSON.stringify(state.todoModel)
-    const todoModelParse = JSON.parse(todoModelStringify)
-    state.todoList.push(todoModelParse)
-    state.todoModel.name = ''
+  addTodo(state, payload) {
+    state.todoList.push(payload)
   },
   deleteTodo(state, payload) {
     state.todoList = state.todoList.filter((todo,index) => index !== payload)
   },
   completedTodo(state, payload){
+    const findTodo = state.todoList.find((todo, index) => index === payload)
+    findTodo.status = findTodo.status === 'completed' ? 'pending' : 'completed'
   },
-  addTodoInput(state, payload){
-    state.todoModel.name = payload
-  }
 }

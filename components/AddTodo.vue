@@ -5,14 +5,13 @@
   >
         <span
           class="add-todo__check-icon"
-
         ></span>
     <form @submit.prevent="addTodo"  class="add-todo__form">
       <input
         type="text"
         placeholder="Create a new todo..."
         class="input"
-        v-model="todoInput"
+        v-model="todoModel.name"
       />
     </form>
   </div>
@@ -24,22 +23,19 @@ export default {
   name: "AddTodo",
   data(){
     return{
-
+      todoModel: {
+        name:'',
+        completion_date:Date.now(),
+        description:'description',
+        due_date:new Date(2022,3,5),
+        status:'pending'
+      },
     }
   },
   computed:{
-    todoInput: {
-      get () {
-        return this.todoModel.name
-      },
-      set (value) {
-        this.addTodoInput(value)
-      }
-    },
-    ...mapState({todoModel: 'todoModel'})
   },
   methods:{
-    ...mapMutations({addTodoMutation: 'addTodo',addTodoInput:'addTodoInput'}),
+    ...mapMutations({addTodoMutation: 'addTodo'}),
      addTodo(){
       if (!this.todoModel.name.trim() || this.todoModel.name.length > 255) {
         return this.$refs.addTodoForm.classList.add(
@@ -51,7 +47,10 @@ export default {
         "border-2",
         "border-red-400"
       );
-      this.addTodoMutation()
+      const todoModelStringify = JSON.stringify(this.todoModel)
+       const todoModelParse = JSON.parse(todoModelStringify)
+        this.addTodoMutation(todoModelParse)
+       this.todoModel.name=''
     }
   }
 }
