@@ -1,12 +1,13 @@
 <template>
   <div
+    ref="addTodoForm"
     class="add-todo"
   >
         <span
           class="add-todo__check-icon"
 
         ></span>
-    <form class="add-todo__form">
+    <form @submit.prevent="addTodo"  class="add-todo__form">
       <input
         type="text"
         placeholder="Create a new todo..."
@@ -18,11 +19,39 @@
 </template>
 
 <script>
+import {mapMutations, mapState} from 'vuex'
 export default {
   name: "AddTodo",
   data(){
     return{
-      todoInput:null
+
+    }
+  },
+  computed:{
+    todoInput: {
+      get () {
+        return this.todoModel.name
+      },
+      set (value) {
+        this.addTodoInput(value)
+      }
+    },
+    ...mapState({todoModel: 'todoModel'})
+  },
+  methods:{
+    ...mapMutations({addTodoMutation: 'addTodo',addTodoInput:'addTodoInput'}),
+     addTodo(){
+      if (!this.todoModel.name.trim() || this.todoModel.name.length > 255) {
+        return this.$refs.addTodoForm.classList.add(
+          "border-2",
+          "border-red-400"
+        );
+      }
+      this.$refs.addTodoForm.classList.remove(
+        "border-2",
+        "border-red-400"
+      );
+      this.addTodoMutation()
     }
   }
 }
