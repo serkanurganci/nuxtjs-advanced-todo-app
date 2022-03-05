@@ -9,7 +9,7 @@
     <div
       class="todo-list__status status"
     >
-      <div class="text-xs">1 items left</div>
+      <div class="text-xs">{{todoLeftGetter}} items left</div>
       <div
         class="status__status-items"
       >
@@ -34,7 +34,7 @@
       </div>
       <div
         class="text-xs cursor-pointer dark:hover:text-[#d2d3db] hover:text-[#484b6a] transition-colors"
-
+        @click="handleClearCompletedTodos"
       >
         Clear Completed
       </div>
@@ -48,17 +48,27 @@ import {mapState, mapGetters, mapMutations} from 'vuex'
 
 export default {
   name: "TodoList",
+  data(){
+    return{
+      filterType:null
+    }
+  },
   computed:{
     ...mapState({todoList:'todoList'}),
-    ...mapGetters({filteredTodoListGetter:'filteredTodoListGetter'})
+    ...mapGetters({filteredTodoListGetter:'filteredTodoListGetter',todoLeftGetter:'todoLeftGetter'})
   },
   mounted() {
     this.filteredStatusTodoList('all')
   },
   methods:{
-    ...mapMutations(['filteredStatusTodoList']),
+    ...mapMutations({filteredStatusTodoList:'filteredStatusTodoList',clearCompletedTodos:'clearCompletedTodos'}),
     filteredList(filterType){
-      this.filteredStatusTodoList(filterType)
+      this.filterType = filterType
+      this.filteredStatusTodoList(this.filterType)
+    },
+    handleClearCompletedTodos() {
+      this.clearCompletedTodos()
+      this.filteredStatusTodoList(this.filterType)
     }
   }
 }

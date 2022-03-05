@@ -21,6 +21,10 @@ export const state = () => ({
 export const getters = {
   filteredTodoListGetter(state){
     return state.filteredTodoList
+  },
+  todoLeftGetter(state){
+    const filteredTodo = state.todoList.filter(todo => todo.status === 'pending')
+    return filteredTodo.length
   }
 }
 export const mutations = {
@@ -33,6 +37,9 @@ export const mutations = {
   completedTodo(state, payload){
     const findTodo = state.todoList.find((todo, index) => index === payload)
     findTodo.status = findTodo.status === 'completed' ? 'pending' : 'completed'
+  },
+  clearCompletedTodos(state){
+    state.todoList = state.todoList.filter(todo => todo.status !== 'completed')
   },
   filteredStatusTodoList(state,payload){
     if(payload === 'all'){
