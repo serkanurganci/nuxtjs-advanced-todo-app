@@ -31,7 +31,8 @@ export const mutations = {
     state.todoList.push(todoModelParse)
     state.todoModel.name = ''
   },
-  removeTodo(state, payload) {
+  deleteTodo(state, payload) {
+    state.todoList = state.todoList.filter((todo,index) => index !== payload)
   },
   completedTodo(state, payload){
   },

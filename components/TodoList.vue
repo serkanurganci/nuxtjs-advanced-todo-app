@@ -1,8 +1,9 @@
 <template>
   <div class="todo-list">
-    <div v-for="todo in todoList">
+    <div v-for="(todo,index) in todoList">
       <Todo
         :todo="todo"
+        :todoId="index"
       ></Todo>
     </div>
     <div
