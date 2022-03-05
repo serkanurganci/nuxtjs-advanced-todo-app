@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .add-todo{
-  @apply rounded-md h-14 transition-colors relative bg-white bg-gray-800 p-3 flex items-center ;
+  @apply rounded-md h-14 transition-colors relative  bg-gray-800 p-3 flex items-center ;
   &__check-icon{
     @apply w-5 h-5 bg-transparent border border-gray-600 rounded-full inline-block cursor-pointer;
   }

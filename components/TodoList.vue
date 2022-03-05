@@ -1,5 +1,42 @@
 <template>
-  <div class="todo-list">Todo List</div>
+  <div class="todo-list">
+    <div>
+      <Todo
+        todo="Todo 1"
+      ></Todo>
+    </div>
+    <div
+      class="todo-list__status status"
+    >
+      <div class="text-xs">1 items left</div>
+      <div
+        class="status__status-items"
+      >
+        <p
+          class="status-item"
+        >
+          All
+        </p>
+        <p
+          class="status-item"
+        >
+          Active
+        </p>
+        <p
+          class="status-item"
+        >
+          Completed
+        </p>
+      </div>
+      <div
+        class="text-xs cursor-pointer dark:hover:text-[#d2d3db] hover:text-[#484b6a] transition-colors"
+
+      >
+        Clear Completed
+      </div>
+    </div>
+
+  </div>
 </template>
 
 <script>
@@ -10,6 +47,17 @@ export default {
 
 <style lang="scss" scoped>
   .todo-list{
-    @apply text-7xl text-white;
+    @apply overflow-x-hidden bg-gray-800 shadow-xl md:shadow-2xl rounded-md;
+    &__status{
+      @apply mb-24 md:mb-0 flex justify-between items-center p-3.5 text-gray-500 relative;
+    }
+    .status{
+      &__status-items{
+        @apply flex justify-center p-4 bg-white  bg-gray-800 shadow-lg  absolute -bottom-20 right-0 w-full space-x-3.5 text-sm font-bold rounded-lg md:bg-transparent md:p-0 md:shadow-none md:static md:rounded-none md:w-auto md:justify-start;
+        .status-item {
+          @apply cursor-pointer hover:text-gray-500 dark:hover:text-gray-200 transition-colors;
+        }
+      }
+    }
   }
 </style>
