@@ -38,7 +38,7 @@ export default {
   data(){
     return{
       img:backgroundImg,
-      activeTab:'Statistics'
+      activeTab:'TodoList'
     }
   },
 }

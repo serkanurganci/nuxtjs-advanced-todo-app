@@ -1,6 +1,9 @@
+import Vue from "vue";
+
 export const state = () => ({
   todoList: [
     {
+      id:0,
       name:'Todo List Item',
       completion_date:'Incomplete',
       description:null,
@@ -8,6 +11,7 @@ export const state = () => ({
       status:'pending'
     },
     {
+      id:1,
       name:'Todo List Item 2',
       completion_date:'Incomplete',
       description:null,
@@ -15,6 +19,7 @@ export const state = () => ({
       status:'pending'
     }
   ],
+  activeEditTodo:null,
 })
 export const getters = {
   todoPendingGetter(state){
@@ -27,6 +32,10 @@ export const getters = {
 export const mutations = {
   addTodo(state, payload) {
     state.todoList.push(payload)
+  },
+  editTodoMutation(state, payload){
+    const findIndexEditTodo = state.todoList.findIndex(todo => todo.id === payload.id)
+    state.todoList.splice(findIndexEditTodo,1,payload)
   },
   deleteTodo(state, payload) {
     state.todoList = state.todoList.filter((todo,index) => index !== payload)
@@ -42,4 +51,7 @@ export const mutations = {
   clearCompletedTodos(state){
     state.todoList = state.todoList.filter(todo => todo.status !== 'completed')
   },
+  setActiveEditTodo(state,payload){
+    state.activeEditTodo = payload
+  }
 }

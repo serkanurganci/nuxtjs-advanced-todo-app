@@ -6,7 +6,7 @@
         <span
           class="add-todo__check-icon"
         ></span>
-    <form @submit.prevent="addTodo"  class="add-todo__form">
+    <form @submit.prevent="handleTodoForm"  class="add-todo__form">
       <input
         type="text"
         placeholder="Todo name"
@@ -20,18 +20,20 @@
           <input v-model="todoModel.due_date" placeholder="saf" class="form-item" type="date"/>
         </div>
       </div>
-      <Button @click.native="addTodo">Add</Button>
+      <Button @click.native="handleTodoForm">{{ activeEditTodo ? 'Edit' : 'Add' }}</Button>
     </form>
   </div>
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
+
 export default {
   name: "AddTodo",
   data(){
     return{
       todoModel: {
+        id:null,
         name:'',
         completion_date:'Incomplete',
         description:'',
@@ -41,10 +43,27 @@ export default {
     }
   },
   computed:{
+    ...mapState({todoList:'todoList',activeEditTodo:'activeEditTodo'}),
+  },
+  watch:{
+    activeEditTodo(){
+      if(this.activeEditTodo){
+        const todoModelStringify = JSON.stringify(this.activeEditTodo)
+        this.todoModel = JSON.parse(todoModelStringify)
+      }
+    }
   },
   methods:{
-    ...mapMutations({addTodoMutation: 'addTodo'}),
-     addTodo(){
+    ...mapMutations({addTodoMutation: 'addTodo',editTodoMutation:'editTodoMutation',setActiveEditTodo:'setActiveEditTodo'}),
+     handleTodoForm(){
+      const emptyForm =  {
+        id:null,
+        name:'',
+        completion_date:'Incomplete',
+        description:'',
+        due_date:null,
+        status:'pending'
+      }
       if (!this.todoModel.name.trim() || this.todoModel.name.length > 255 || this.todoModel.description > 1000) {
         return this.$refs.addTodoForm.classList.add(
           "border-2",
@@ -55,10 +74,17 @@ export default {
         "border-2",
         "border-red-400"
       );
+      if(!this.activeEditTodo)this.todoModel.id = Math.random()
+
       const todoModelStringify = JSON.stringify(this.todoModel)
        const todoModelParse = JSON.parse(todoModelStringify)
-        this.addTodoMutation(todoModelParse)
-       this.todoModel.name=''
+
+       if(this.activeEditTodo){
+         this.editTodoMutation(todoModelParse)
+         this.setActiveEditTodo(null)
+       }
+       else this.addTodoMutation(todoModelParse)
+       this.todoModel = emptyForm
     }
   }
 }
