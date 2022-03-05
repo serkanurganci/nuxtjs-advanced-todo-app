@@ -2,7 +2,7 @@
   <div class="todo-list">
     <div>
       <Todo
-        todo="Todo 1"
+        :todo="{title:'Todo 1'}"
       ></Todo>
     </div>
     <div
@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
   .todo-list{
-    @apply overflow-x-hidden bg-gray-800 shadow-xl md:shadow-2xl rounded-md;
+    @apply overflow-x-hidden bg-gray-800 shadow-xl md:shadow-2xl rounded-md mt-12;
     &__status{
       @apply mb-24 md:mb-0 flex justify-between items-center p-3.5 text-gray-500 relative;
     }
