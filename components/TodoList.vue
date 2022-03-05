@@ -1,6 +1,6 @@
 <template>
   <div class="todo-list">
-    <div v-for="(todo,index) in todoList">
+    <div v-for="(todo,index) in filteredTodoListGetter">
       <Todo
         :todo="todo"
         :todoId="index"
@@ -15,16 +15,19 @@
       >
         <p
           class="status-item"
+          @click="filteredList('all')"
         >
           All
         </p>
         <p
           class="status-item"
+          @click="filteredList('pending')"
         >
           Active
         </p>
         <p
           class="status-item"
+          @click="filteredList('completed')"
         >
           Completed
         </p>
@@ -41,15 +44,22 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapGetters, mapMutations} from 'vuex'
 
 export default {
   name: "TodoList",
   computed:{
-    ...mapState({todoList:'todoList'})
+    ...mapState({todoList:'todoList'}),
+    ...mapGetters({filteredTodoListGetter:'filteredTodoListGetter'})
   },
   mounted() {
-    console.log(this.todoList)
+    this.filteredStatusTodoList('all')
+  },
+  methods:{
+    ...mapMutations(['filteredStatusTodoList']),
+    filteredList(filterType){
+      this.filteredStatusTodoList(filterType)
+    }
   }
 }
 </script>

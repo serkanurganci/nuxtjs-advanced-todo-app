@@ -22,14 +22,13 @@
 
 <script>
 import backgroundImg from '/assets/images/background.jpeg'
-
 export default {
   name: 'IndexPage',
   data(){
     return{
       img:backgroundImg
     }
-  }
+  },
 }
 </script>
 

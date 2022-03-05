@@ -1,5 +1,4 @@
 export const state = () => ({
-
   todoList: [
     {
       name:'Todo List Item',
@@ -15,9 +14,15 @@ export const state = () => ({
       due_date:new Date(2022,3,5),
       status:'pending'
     }
-  ]
+  ],
+  filteredTodoList:[],
+  activeStatus:'all'
 })
-
+export const getters = {
+  filteredTodoListGetter(state){
+    return state.filteredTodoList
+  }
+}
 export const mutations = {
   addTodo(state, payload) {
     state.todoList.push(payload)
@@ -29,4 +34,11 @@ export const mutations = {
     const findTodo = state.todoList.find((todo, index) => index === payload)
     findTodo.status = findTodo.status === 'completed' ? 'pending' : 'completed'
   },
+  filteredStatusTodoList(state,payload){
+    if(payload === 'all'){
+      state.filteredTodoList = state.todoList
+    }else{
+      state.filteredTodoList = state.todoList.filter(todo => todo.status === payload)
+    }
+  }
 }
