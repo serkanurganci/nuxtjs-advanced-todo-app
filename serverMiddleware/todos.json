@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "name": "Todo List Item",
+    "completion_date": "incomplete",
+    "description": null,
+    "due_date": null,
+    "status": "pending"
+  },
+  {
+    "id": 1,
+    "name": "Todo List Item 2",
+    "completion_date": "incomplete",
+    "description": null,
+    "due_date": null,
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "name": "Todo List Item 2",
+    "completion_date": "incomplete",
+    "description": null,
+    "due_date": null,
+    "status": "pending"
+  }
+]

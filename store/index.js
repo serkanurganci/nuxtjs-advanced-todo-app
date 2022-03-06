@@ -41,7 +41,7 @@ export const mutations = {
     this.commit('setLocalStorage')
   },
   deleteTodo(state, payload) {
-    state.todoList = state.todoList.filter((todo,index) => index !== payload)
+    state.todoList = state.todoList.filter((todo) => todo.id !== payload)
     this.commit('setLocalStorage')
   },
   completedTodo(state, payload){

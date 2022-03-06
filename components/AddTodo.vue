@@ -104,6 +104,7 @@ export default {
     .input{
     }
     .textarea{
+      @apply resize-none
     }
 
   }

@@ -52,5 +52,10 @@ export default {
         autoprefixer: {},
       },
     },
-  }
+  },
+  serverMiddleware: [
+    {
+    path:"api",
+      handler:"~/serverMiddleware/api"
+    }]
 }

@@ -9,7 +9,7 @@
       <p>Data Table</p>
     </div>
     <div v-if="!toggleSwitch" class="todo-list__kanban">
-      <div v-for="(todo) in filteredTodoList">
+      <div v-for="(todo) in filteredTodoList" class="max-h-[10rem] overflow-scroll">
         <Todo
           :todo="todo"
           :todoId="todo.id"
@@ -97,7 +97,7 @@ export default {
 
 <style lang="scss" scoped>
   .todo-list{
-    @apply text-gray-500 dark:text-gray-300 mt-10;
+    @apply text-gray-500 dark:text-gray-300 mt-10 bg-white dark:bg-slate-900;
     &__status{
       @apply mb-24 md:mb-0 flex justify-between items-center p-3.5  relative;
     }
@@ -114,7 +114,7 @@ export default {
 
     }
     &__kanban{
-      @apply shadow-xl dark:bg-gray-800 md:shadow-2xl  rounded-md z-10 space-y-4 w-11/12 md:w-3/5 lg:w-2/5 mx-auto my-0 mt-4 relative;
+      @apply  shadow-xl dark:bg-gray-800 md:shadow-2xl  rounded-md z-10 space-y-4 w-11/12 md:w-3/5 lg:w-2/5 mx-auto my-0 mt-4 relative;
     }
     &__data-table{
       @apply dark:bg-gray-800 shadow-2xl  rounded-md z-10 space-y-4  w-4/6  mx-auto my-0 mt-4 relative

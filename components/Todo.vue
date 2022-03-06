@@ -52,7 +52,6 @@ export default {
     ...mapMutations({setActiveEditTodo:'setActiveEditTodo',deleteTodoMutation: 'deleteTodo', completeTodoMutation: 'completedTodo'}),
     deleteTodo() {
       this.deleteTodoMutation(this.todoId)
-
     },
     completeTodo() {
       this.completeTodoMutation(this.todoId)

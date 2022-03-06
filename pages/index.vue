@@ -98,9 +98,9 @@ export default {
     }
     .container{
       &__header{
-        @apply flex flex-col items-start justify-between bg-[rgba(0,0,0,0.3)] p-2 rounded-md;
+        @apply flex flex-col items-start justify-between  p-2 rounded-md;
         .heading{
-          @apply text-white font-bold tracking-widest text-4xl md:text-5xl ;
+          @apply text-white font-bold tracking-widest text-4xl md:text-5xl tracking-[1rem];
         }
       }
     }
