@@ -10,8 +10,16 @@
   {
     "id": 45362,
     "name": "New Todo App",
-    "completion_date": "incomplete",
+    "completion_date": "2022-03-06",
     "description": "todo app",
+    "due_date": null,
+    "status": "completed"
+  },
+  {
+    "id": 48567,
+    "name": "todo",
+    "completion_date": "incomplete",
+    "description": "",
     "due_date": null,
     "status": "pending"
   }

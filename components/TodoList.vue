@@ -9,7 +9,7 @@
       <p>Data Table</p>
     </div>
     <div v-if="!toggleSwitch" class="todo-list__kanban">
-      <div v-for="(todo) in filteredTodoList" class="max-h-[10rem] overflow-scroll">
+      <div v-for="(todo) in filteredTodoList" >
         <Todo
           :todo="todo"
           :todoId="todo.id"

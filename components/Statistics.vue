@@ -124,7 +124,7 @@ export default {
 
 <style lang="scss" scoped>
 .container{
- @apply dark:bg-gray-800 rounded-md z-10 space-y-4 w-11/12 md:w-3/5 lg:w-2/5 mx-auto my-0 mt-4 relative;
+ @apply dark:bg-slate-900 rounded-md z-10 space-y-4 w-full md:w-3/5 lg:w-2/5 mx-auto my-0 mt-4 relative;
   .statistics{
     @apply w-full mt-12 flex flex-col sm:flex-row items-center justify-between;
     &__chart{
