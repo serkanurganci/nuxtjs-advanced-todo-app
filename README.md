@@ -22,6 +22,7 @@ $ npm run generate
 - Vue
 - TailwindCSS
 - SCSS
+- Light and Dark mode
 - Chart.js
 - Vue-chartjs
 - Express
