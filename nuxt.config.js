@@ -57,5 +57,5 @@ export default {
     {
     path:"api",
       handler:"~/serverMiddleware/api"
-    }]
+    }],
 }
