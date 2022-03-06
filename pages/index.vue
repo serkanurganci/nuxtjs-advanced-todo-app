@@ -40,6 +40,7 @@ import backgroundDark from '/assets/images/backgroundDark.jpeg'
 import backgroundLight from '/assets/images/backgroundLight.jpeg'
 import PieChart from "../components/PieChart";
 import Button from "../components/Button";
+import {mapActions} from 'vuex'
 
 export default {
   name: 'IndexPage',
@@ -67,6 +68,7 @@ export default {
     }
   },
   methods:{
+    ...mapActions({getTodosAction:'getTodosAction'}),
     changeTheme() {
       if (localStorage.theme === "light") {
         document.documentElement.classList.add("dark");
@@ -82,7 +84,8 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit('getLocalStorage')
+    // this.$store.commit('getLocalStorage')
+    this.getTodosAction()
   }
 }
 </script>

@@ -64,11 +64,39 @@ export const mutations = {
   setLocalStorage(state){
     localStorage.setItem("todos", JSON.stringify(state.todoList));
   },
-  getLocalStorage(state){
-    const getLocalStorage = localStorage.getItem('todos')
-    const parseLocalStorage = JSON.parse(getLocalStorage)
-    if(getLocalStorage){
-      state.todoList = parseLocalStorage
-    }
+  // getLocalStorage(state){
+  //   const getLocalStorage = localStorage.getItem('todos')
+  //   const parseLocalStorage = JSON.parse(getLocalStorage)
+  //   if(getLocalStorage){
+  //     state.todoList = parseLocalStorage
+  //   }
+  // }
+  setTodo(state, payload){
+    state.todoList = payload
+  }
+}
+
+export const actions={
+  async getTodosAction({commit}){
+      const  get  = await this.$axios.$get(`http://localhost:3000/api/todos`)
+      console.log(get)
+      commit('setTodo', get)
+      return { get }
+  },
+  async addTodoAction({commit},payload){
+    const  post  = await this.$axios.$post(`http://localhost:3000/api/todos`,payload)
+    commit('addTodo',payload)
+    return { post }
+  },
+  async updateTodoAction({commit},payload){
+    const  put  = await this.$axios.$put(`http://localhost:3000/api/todos`,payload)
+    commit('editTodoMutation',payload)
+    return { put }
+  },
+  async deleteTodoAction({state,commit},payload){
+    const  remove  = await this.$axios.$delete(`http://localhost:3000/api/todos/${payload}`)
+    commit('deleteTodo',payload)
+    console.log(remove)
+    return { remove }
   }
 }

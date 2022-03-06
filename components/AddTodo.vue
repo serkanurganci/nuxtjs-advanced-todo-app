@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {mapMutations, mapState} from 'vuex'
+import {mapActions, mapMutations, mapState} from 'vuex'
 
 export default {
   name: "AddTodo",
@@ -55,6 +55,7 @@ export default {
   },
   methods:{
     ...mapMutations({addTodoMutation: 'addTodo',editTodoMutation:'editTodoMutation',setActiveEditTodo:'setActiveEditTodo'}),
+    ...mapActions({addTodoAction:'addTodoAction',updateTodoAction:'updateTodoAction'}),
      handleTodoForm(){
       const emptyForm =  {
         id:null,
@@ -80,10 +81,10 @@ export default {
        const todoModelParse = JSON.parse(todoModelStringify)
 
        if(this.activeEditTodo){
-         this.editTodoMutation(todoModelParse)
+         this.updateTodoAction(todoModelParse)
          this.setActiveEditTodo(null)
        }
-       else this.addTodoMutation(todoModelParse)
+       else this.addTodoAction(todoModelParse)
        this.todoModel = emptyForm
     }
   }

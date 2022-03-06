@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import {mapMutations, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 
 export default {
   name: 'TodoListDataTable',
@@ -63,14 +63,17 @@ export default {
   },
   methods:{
     ...mapMutations({setActiveEditTodo:'setActiveEditTodo',deleteTodoMutation: 'deleteTodo', completeTodoMutation: 'completedTodo'}),
+    ...mapActions({deleteTodoAction:'deleteTodoAction'}),
     deleteTodo(todo) {
-      this.deleteTodoMutation(todo.id)
+      // this.deleteTodoMutation(todo.id)
+      this.deleteTodoAction(todo.id)
     },
     completeTodo(todo) {
       this.completeTodoMutation(todo.id)
     },
     editTodo(todo){
       this.setActiveEditTodo(todo)
+
     }
   }
 }
