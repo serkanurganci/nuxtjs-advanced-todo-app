@@ -27,10 +27,9 @@
         </header>
         <div>
           <AddTodo/>
-<!--          <TodoList/>-->
-          <component :is="activeTab"></component>
         </div>
       </div>
+      <component :is="activeTab"></component>
 
     </div>
 
@@ -90,7 +89,7 @@ export default {
 
 <style lang="scss">
   .home{
-    @apply h-screen bg-gray-100 dark:bg-slate-900;
+    @apply h-screen dark:bg-slate-900;
     &__background{
      @apply absolute z-0 h-[21rem] w-full bg-cover bg-no-repeat inset-0 ;
     }

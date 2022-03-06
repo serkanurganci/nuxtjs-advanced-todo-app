@@ -74,7 +74,7 @@ export default {
         "border-2",
         "border-red-400"
       );
-      if(!this.activeEditTodo)this.todoModel.id = Math.random()
+      if(!this.activeEditTodo)this.todoModel.id = Math.floor(Math.random() * 99999)
 
       const todoModelStringify = JSON.stringify(this.todoModel)
        const todoModelParse = JSON.parse(todoModelStringify)

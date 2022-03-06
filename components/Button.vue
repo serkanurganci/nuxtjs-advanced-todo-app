@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 .button{
-  @apply cursor-pointer py-1 px-2 text-gray-300 float-right  mt-2 border bg-purple-900 border-purple-900  rounded-lg text-sm;
+  @apply cursor-pointer py-1 px-2 text-gray-100 float-right  mt-2 border bg-purple-900 border-purple-900  rounded-lg text-sm;
 }
 .active{
   @apply bg-purple-600;

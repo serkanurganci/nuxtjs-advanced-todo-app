@@ -1,12 +1,14 @@
 <template>
- <div class="statistics">
-   <div class="statistics__chart">
-     <PieChart :data="pieData" :options="pieOptions"/>
-   </div>
-   <div class="statistics__chart">
-     <BarChart :data="barChartData" :options="barChartOptions" />
-   </div>
- </div>
+  <div class="container">
+    <div class="statistics">
+      <div class="statistics__chart">
+        <PieChart :data="pieData" :options="pieOptions"/>
+      </div>
+      <div class="statistics__chart">
+        <BarChart :data="barChartData" :options="barChartOptions" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -121,10 +123,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container{
+ @apply dark:bg-gray-800 rounded-md z-10 space-y-4 w-11/12 md:w-3/5 lg:w-2/5 mx-auto my-0 mt-4 relative;
   .statistics{
     @apply w-full mt-12 flex items-center justify-between;
     &__chart{
       @apply w-[9rem] sm:w-[15rem];
     }
   }
+}
+
 </style>

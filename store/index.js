@@ -48,7 +48,7 @@ export const mutations = {
     const newDate = new Date
     const zero = (item) =>{return item < 10 ? '0' + item : item}
     const nowDate = newDate.getFullYear() + '-' + (zero(newDate.getMonth() + 1)) + '-' + zero(newDate.getDate())
-    const findTodo = state.todoList.find((todo, index) => index === payload)
+    const findTodo = state.todoList.find((todo) => todo.id === payload)
     findTodo.status = findTodo.status === 'completed' ? 'pending' : 'completed'
     findTodo.completion_date = findTodo.completion_date === 'incomplete' ? nowDate : 'incomplete'
     this.commit('setLocalStorage')
