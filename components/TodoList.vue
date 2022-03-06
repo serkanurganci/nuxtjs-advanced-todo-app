@@ -36,7 +36,7 @@
         </p>
       </div>
       <div
-        class="text-xs cursor-pointer hover:text-gray-200 transition-colors"
+        class="todo-list__clear-completed"
         @click="handleClearCompletedTodos"
       >
         Clear Completed
@@ -83,20 +83,24 @@ export default {
 
 <style lang="scss" scoped>
   .todo-list{
-    @apply overflow-x-hidden bg-gray-800 shadow-xl md:shadow-2xl rounded-md mt-12;
+    @apply overflow-x-hidden bg-gray-100 dark:bg-gray-800 shadow-xl text-gray-500 dark:text-gray-300 md:shadow-2xl rounded-md mt-12;
     &__status{
-      @apply mb-24 md:mb-0 flex justify-between items-center p-3.5 text-gray-500 relative;
+      @apply mb-24 md:mb-0 flex justify-between items-center p-3.5  relative;
     }
     .status{
       &__status-items{
-        @apply flex justify-center p-4 bg-white  bg-gray-800 shadow-lg  absolute -bottom-20 right-0 w-full space-x-3.5 text-sm font-bold rounded-lg md:bg-transparent md:p-0 md:shadow-none md:static md:rounded-none md:w-auto md:justify-start;
+        @apply flex justify-center p-4    shadow-lg  absolute -bottom-20 right-0 w-full space-x-3.5 text-sm font-bold rounded-lg md:bg-transparent md:p-0 md:shadow-none md:static md:rounded-none md:w-auto md:justify-start;
         .status-item {
-          @apply cursor-pointer hover:text-gray-500 dark:hover:text-gray-200 transition-colors;
+          @apply cursor-pointer text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors;
         }
         .status-item.active{
-          @apply text-gray-200;
+          @apply text-gray-600 dark:text-gray-200;
         }
       }
     }
+    &__clear-completed{
+      @apply text-xs cursor-pointer text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors;
+    }
   }
+
 </style>

@@ -66,7 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 .todo {
-  @apply relative flex items-center w-full  p-3 gap-x-4 h-14 border-b border-gray-300 border-gray-700 text-gray-300 select-text ;
+  @apply relative flex items-center w-full  p-3 gap-x-4 h-14 border-b border-gray-300 border-gray-700  select-text ;
   &:hover {
     .todo__delete-icon {
       @apply visible;
@@ -74,7 +74,7 @@ export default {
   }
 
   &__check-icon {
-    @apply w-5 h-5 text-sm relative bg-transparent inline-block transition-all cursor-pointer border border-gray-600 rounded-full ;
+    @apply w-5 h-5 text-sm relative bg-transparent inline-block transition-all cursor-pointer border border-gray-600 rounded-full text-gray-100 dark:text-gray-600;
   }
 
   &__delete-icon {
@@ -96,7 +96,7 @@ export default {
 }
 
 #checked {
-  @apply bg-origin-border bg-gradient-to-tl from-purple-500 to-blue-500 border-transparent;
+  @apply bg-origin-border bg-gradient-to-tl from-purple-500 to-blue-500 border-transparent ;
 }
 
 .checked-name {

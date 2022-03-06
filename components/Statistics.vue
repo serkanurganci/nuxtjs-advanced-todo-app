@@ -19,44 +19,12 @@ export default {
     return{
       pieOptions: {
         hoverBorderWidth: 20,
-        fontColor: '#ffffff'
-      },
-      barChartOptions: {
-        responsive: true,
+        fontColor: '#ffffff',
         legend: {
-          display: false,
-        },
-        title: {
-          display: true,
-          text: "Completed Todo Time Series",
-          fontSize: 24,
-          fontColor: "#6b7280",
-        },
-        tooltips: {
-          backgroundColor: "#17BF62",
-        },
-        scales: {
-          xAxes: [
-            {
-              gridLines: {
-                display: true,
-              },
-            },
-          ],
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-                max: 7,
-                min: 0,
-                stepSize: 1,
-              },
-              gridLines: {
-                display: true,
-              },
-            },
-          ],
-        },
+          labels: {
+            fontColor:  "#9498a1"
+          }
+        }
       },
     }
   },
@@ -65,7 +33,7 @@ export default {
     ...mapGetters({todoPendingGetter:'todoPendingGetter',todoCompletedGetter:'todoCompletedGetter'}),
     pieData() {
       return{
-        hoverBackgroundColor: "red",
+        hoverBackgroundColor: "blue",
         hoverBorderWidth: 10,
         labels: ["Completed", "Pending"],
         datasets: [
@@ -84,13 +52,58 @@ export default {
           {
             label: "Todo",
             data: this.groupTodoListCount,
-            backgroundColor: "rgba(67, 28, 135, 0.3)",
-            borderColor: "rgba(67, 28, 135, 1)",
+            backgroundColor: "rgba(175, 1, 126, 0.4)",
+            borderColor: "rgba(175, 1, 126, 1)",
             borderWidth: 2,
           },
         ],
       }
     },
+    barChartOptions(){
+      return {
+        responsive: true,
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: "Completed Todo Time Series",
+          fontSize: 24,
+          fontColor:  "#9498a1"
+        },
+        tooltips: {
+          backgroundColor: "#6159ED",
+        },
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: true,
+                color:'#9498a1'
+              },
+              ticks:{
+                fontColor:'#9498a1'
+              }
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                stepSize: 1,
+                fontColor:'#9498a1'
+              },
+              gridLines: {
+                display: true,
+                color:'#9498a1'
+              },
+            },
+          ],
+        },
+      }
+    },
+
     groupTodoList(){
       return groupBy(this.todoList, function (n) {
         return n.completion_date

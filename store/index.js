@@ -5,7 +5,7 @@ export const state = () => ({
     {
       id:0,
       name:'Todo List Item',
-      completion_date:'Incomplete',
+      completion_date:'incomplete',
       description:null,
       due_date:null,
       status:'pending'
@@ -13,13 +13,14 @@ export const state = () => ({
     {
       id:1,
       name:'Todo List Item 2',
-      completion_date:'Incomplete',
+      completion_date:'incomplete',
       description:null,
       due_date:null,
       status:'pending'
     }
   ],
   activeEditTodo:null,
+  theme:'dark'
 })
 export const getters = {
   todoPendingGetter(state){
@@ -49,7 +50,7 @@ export const mutations = {
     const nowDate = newDate.getFullYear() + '-' + (zero(newDate.getMonth() + 1)) + '-' + zero(newDate.getDate())
     const findTodo = state.todoList.find((todo, index) => index === payload)
     findTodo.status = findTodo.status === 'completed' ? 'pending' : 'completed'
-    findTodo.completion_date = nowDate
+    findTodo.completion_date = findTodo.completion_date === 'incomplete' ? nowDate : 'incomplete'
     this.commit('setLocalStorage')
   },
   clearCompletedTodos(state){

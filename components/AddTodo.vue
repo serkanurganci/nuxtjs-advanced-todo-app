@@ -16,7 +16,7 @@
       <div class="flex items-end mt-2">
         <textarea placeholder="Todo description" class="textarea form-item mr-1" v-model="todoModel.description"/>
         <div>
-          <p class="text-gray-300 text-sm">Due Date:</p>
+          <p class="text-sm">Due Date:</p>
           <input v-model="todoModel.due_date" placeholder="saf" class="form-item" type="date"/>
         </div>
       </div>
@@ -35,7 +35,7 @@ export default {
       todoModel: {
         id:null,
         name:'',
-        completion_date:'Incomplete',
+        completion_date:'incomplete',
         description:'',
         due_date:null,
         status:'pending'
@@ -59,7 +59,7 @@ export default {
       const emptyForm =  {
         id:null,
         name:'',
-        completion_date:'Incomplete',
+        completion_date:'incomplete',
         description:'',
         due_date:null,
         status:'pending'
@@ -92,7 +92,7 @@ export default {
 
 <style lang="scss" scoped>
 .add-todo{
-  @apply rounded-md  transition-colors relative  bg-gray-800 p-3 flex items-center text-gray-300;
+  @apply rounded-md  transition-colors relative bg-gray-100 dark:bg-gray-800 p-3 flex items-center text-gray-500 dark:text-gray-300;
   &__check-icon{
     @apply w-5 h-5 bg-transparent border border-gray-600 rounded-full inline-block cursor-pointer;
   }
@@ -107,5 +107,8 @@ export default {
     }
 
   }
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  @apply invert-0 dark:invert;
 }
 </style>
