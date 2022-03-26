@@ -17,9 +17,9 @@ $ npm run start
 $ npm run generate
 ```
 ## Topics
-
 - Nuxt
 - Vue
+- Server Middleware
 - TailwindCSS
 - SCSS
 - Light and Dark mode
